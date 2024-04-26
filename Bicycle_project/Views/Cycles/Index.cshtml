@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="d-flex justify-content-center">Cycle List</h2>
+<div class="row">
+    <div class="col">
+        <div class="d-flex">
+            <a href="@Url.Action("Create","Cycles")" class="btn btn-success mb-2"><i class="fa fa-plus-circle"></i> Add New Cycle</a>
+        </div>
+        <div id="table-div">
+            @Html.Action("ShoeDetails")
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery-3.7.1.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+    <script type="text/javascript">
+        $(document).on("click", "button.show", function () {
+            var showbtn = $(this);
+            var hideBtn = showbtn.next();
+            var trSh = showbtn.closest("tr");
+            var trSt = trSh.next();
+            showbtn.hide();
+            hideBtn.show();
+            trSt.show();
+        });
+        $(document).on("click", "button.hide", function () {
+            var hidebtn = $(this);
+            var showbtn = hidebtn.prev();
+            var trSh = showbtn.closest("tr");
+            var trSt = trSh.next();
+            showbtn.show();
+            hidebtn.hide();
+            trSt.hide();
+        });
+    </script>
+}

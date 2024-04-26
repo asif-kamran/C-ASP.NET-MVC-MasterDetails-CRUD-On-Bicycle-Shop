@@ -1,0 +1,136 @@
+﻿@model Bicycle_project.Models.ViewModels.CycleEditModel
+
+@using (Ajax.BeginForm("Edit", "Cycles", new { }, new AjaxOptions
+{
+    HttpMethod = "POST",
+    InsertionMode = InsertionMode.Replace,
+    UpdateTargetId = "form-container",
+    OnSuccess = "Onsuccess",
+    OnComplete = "clearAll"
+}, new { id = "frm", enctype = "multipart/form-data" }))
+{
+    <div class="row d-flex justify-content-between">
+        <div class="col-8">
+            <h2 style="color:white">Edit Cycle</h2>
+            <div class="row mb-2">
+                @Html.HiddenFor(x => x.CycleId)
+                @Html.HiddenFor(x => x.Picture)
+                @Html.LabelFor(x => x.CompanyId, new { @class = "col-form-label col-2" })
+                <div class="col-6">
+                    @Html.DropDownListFor(x => x.CompanyId, new SelectList(ViewBag.Companys, "CompanyId", "CompanyName"), "--select one--", new { @class = "form-select" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.CompanyId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.ModelId, new { @class = "col-form-label col-2" })
+                <div class="col-6">
+                    @Html.DropDownListFor(x => x.ModelId, new SelectList(ViewBag.CycleModels, "CycleModelId", "ModelName"), "--select one--", new { @class = "form-select" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.ModelId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.CycleName, new { @class = "col-form-label col-2" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.CycleName, new { @class = "form-control" })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.CycleName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.EntryDate, new { @class = "col-form-label col-2" })
+                <div class="col-6">
+                    @Html.EditorFor(x => x.EntryDate, "{0:yyyy-MM-dd}", new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.EntryDate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                @Html.LabelFor(x => x.Picture, new { @class = "col-form-label col-2" })
+                <div class="col-6">
+                    @Html.TextBoxFor(x => x.Picture, new { @class = "form-control", type = "file" })
+                    <img src="~/Images/@ViewBag.currentPic" width="60" class="mt-2" />
+                </div>
+                <div class="col-4">
+                    @Html.ValidationMessageFor(x => x.Picture, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-10 offset-2">
+                    <div class="form-check">
+                        @Html.CheckBoxFor(x => x.Status)
+                        <label>
+                            <b>Active?</b>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="row mb-2">
+                <div class="col">
+                    <div class="d-flex justify-content-between">
+                        <h4 style="color:white">Stock Info</h4>
+                        <button class="btn btn-primary mb-2" type="submit" name="act" value="add" formnovalidate>+</button>
+                    </div>
+                    <table class="table table-bordered table-sm">
+                        <thead>
+                            <tr>
+                                <th>Category</th>
+                                <th>Amount</th>
+                                <th>Quantity</th>
+                                <th>...</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @for (int i = 0; i < Model.Stocks.Count; i++)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.EnumDropDownListFor(x => Model.Stocks[i].Category, "-select-", new { @class = "form-select" })
+                                        @Html.ValidationMessageFor(x => Model.Stocks[i].Category, "", new { @class = "text-danger" })
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => Model.Stocks[i].Amount, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => Model.Stocks[i].Amount, "", new { @class = "text-danger" })
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => Model.Stocks[i].Qty, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(x => Model.Stocks[i].Qty, "", new { @class = "text-danger" })
+                                    </td>
+                                    <td>
+                                        <button name="act" value="remove_@i" type="submit" class="btn btn-danger btn-sm" formnovalidate><i class="fa fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-2 d-flex justify-content-center">
+
+        <button type="submit" name="act" value="update" class="btn btn-primary ">Update</button>
+
+    </div>
+    <div id="form-container">
+
+    </div>
+
+}
+<div>
+    <a href="@Url.Action("Index","Cycles")" style="color:white">Back To List</a>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+
+}
+

@@ -1,0 +1,42 @@
+﻿@model Bicycle_project.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { role = "form" }))
+{
+    
+    <div class="row">
+        @Html.AntiForgeryToken()
+        <h4>Create Your account</h4>
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="row mb-2">
+            @Html.LabelFor(m => m.Email, new { @class = "col-form-label col-2" })
+            <div class="col-6">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row mb-2">
+            @Html.LabelFor(m => m.Password, new { @class = "col-form-label col-2" })
+            <div class="col-6">
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row mb-2">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-form-label col-2" })
+            <div class="col-6">
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-10 offset-2">
+                <input type="submit" value="Register" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

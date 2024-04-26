@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Bicycle_project.Models.Company>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="text-center">Company List</h2>
+
+<div>
+    <a href="@Url.Action("Create","Companies")" class="btn btn-success mb-2"><i class="fa fa-plus-circle"></i> Add Company</a>
+</div>
+<table class="table table-bordered table-sm table-striped table-hover">
+    <thead class="table-info">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(x => x.CompanyName)
+            </th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(x => item.CompanyName)
+                </td>
+                <td class="text-center">
+                    <a href="@Url.Action("Edit", "Companies", new {id=item.CompanyId})" class="btn btn-outline-success mb-2"><i class="fa fa-pencil"></i> Edit</a>
+                    <a href="@Url.Action("Delete","Companies",new {id=item.CompanyId})" class="btn btn-outline-danger mb-2"><i class="fa fa-trash"></i> Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

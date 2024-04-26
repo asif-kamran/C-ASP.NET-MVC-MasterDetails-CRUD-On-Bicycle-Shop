@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="display-4 mb-5" align="center">Aggregation Function</h2>
+
+<div class="row">
+    <div class="col">
+        <div class="d-flex justify-content-evenly me-4">
+            <div>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="table-danger">
+                        <tr>
+                            <th>Total Cycle Count</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@ViewBag.TotalCycleCount</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="table-danger">
+                        <tr>
+                            <th>Total Cycle Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@ViewBag.sumOfTotalCyclePrice</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="table-danger">
+                        <tr>
+                            <th>Min Cycle Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@ViewBag.minCyclePrice</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="table-danger">
+                        <tr>
+                            <th>Max Cycle Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@ViewBag.maxCyclePrice</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="table-danger">
+                        <tr>
+                            <th>Avg Cycle Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@ViewBag.avgCyclePrice</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

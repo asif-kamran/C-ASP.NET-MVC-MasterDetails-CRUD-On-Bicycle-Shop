@@ -1,0 +1,17 @@
+
+enable-migrations -ContextTypeName Bicycle_project.Models.CycleDbContext -MigrationsDirectory Migrations\CycleDB
+
+add-migration "ScriptA"
+
+Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=master;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False
+
+
+DESKTOP-FHNMU6U\KAMRAN
+
+APDbContext
+DESKTOP-FHNMU6U\KAMRAN
+
+username: asifkamranidb@gmail.com
+password: A1sifkamranidb@gmail.com
+
+@Html.Partial("_LoginPartial")
